@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import WeatherCard from './WeatherCard'
+import WeatherCardList from './WeatherCardList'
 
 export default function Main() {
   const [location, setLocation] = useState({latitude: null, longitude: null})
+  const [data, setData] = useState({beachCitiesData: null, skiCitiesData: null})
 
   function findUserCurrentWeather(){
     function success(position) {
@@ -24,7 +25,24 @@ export default function Main() {
   useEffect(() => {
     axios.get('/api/allWeather')
       .then(results => {
-        console.log(results.data)
+        let [beachCitiesData, skiCitiesData] = [[],[]]
+        for (let i = 0; i < results.data.length; i++) {
+          if (results.data[i].type === 'beachCities') {
+            if (results.data[i].reason === 'null') {
+              beachCitiesData.unshift(results.data[i])
+            } else {
+              beachCitiesData.push(results.data[i])
+            }
+          } else {
+            if (results.data[i].reason === 'null') {
+              skiCitiesData.unshift(results.data[i])
+            } else {
+              skiCitiesData.push(results.data[i])
+            }
+          }
+        }
+        console.log(beachCitiesData)
+        setData({beachCitiesData: beachCitiesData, skiCitiesData: skiCitiesData})
       })
     findUserCurrentWeather()
   }, [])
@@ -32,7 +50,8 @@ export default function Main() {
   return (
     <Paper elevation={3}>
       <p>Latitude: {location.latitude} Longitude: {location.longitude}</p>
-      <WeatherCard/>
+      <WeatherCardList beachCitiesData={data.beachCitiesData}/>
+      <WeatherCardList skiCitiesData={data.skiCitiesData}/>
     </Paper>
   )
 }
