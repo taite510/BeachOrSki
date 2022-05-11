@@ -26,3 +26,7 @@ Run webpack and start the server.
 ```
 
 You should now be able to access the app in your browser using this link: [http://localhost:3000/](http://localhost:3000/)
+
+## Preview of the App
+
+![Picture of the App](https://i.imgur.com/AahKvYl.png)
