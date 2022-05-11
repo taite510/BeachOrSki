@@ -5,7 +5,7 @@ const cities = require('../cities.js')
 const controller = {
   getWeather: (req, res) => {
     const [lat,lon] = req.params.location.split('_')
-    axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,daily&appid=${config.TOKEN}&units=imperial`)
+    axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,daily&appid=${config.key}&units=imperial`)
       .then(results => {
         const weather = {
           lat: lat,

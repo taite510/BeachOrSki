@@ -1,5 +1,5 @@
-// place OpenWeather one call API token below and change this file's name to config.js
+// place OpenWeather one call API key below and change this file's name to config.js
 
 module.exports = {
-  TOKEN: 'place token here'
+  key: 'place key here'
 };
