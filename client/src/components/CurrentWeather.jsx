@@ -9,7 +9,7 @@ export default function CurrentWeather(props) {
       <h1 style={{margin: 0, fontSize: '35pt'}}>Current Weather:</h1>
       {props.data !== null ?
         <>
-          <span>Cloud Cover: {props.data.clouds}%</span>
+          <span>Cloud Cover: {Math.floor(props.data.clouds)}%</span>
           <br/>
           <span>Wind: {Math.floor(props.data.wind_speed)} mph</span>
         </> :
@@ -24,7 +24,6 @@ export default function CurrentWeather(props) {
           <CircularProgress size={100}/>
         }
       </div>
-
     </div>
   )
 }

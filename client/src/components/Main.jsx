@@ -14,11 +14,7 @@ export default function Main() {
       axios.get(`/api/weather/${position.coords.latitude}_${position.coords.longitude}`)
       .then(results => {
         setCurrentWeatherData(results.data)
-        console.log(results.data)
       })
-      // setTimeout(() => {
-      //   setCurrentWeatherData({temp: 69, clouds: 10, wind_speed: 7})
-      // }, 1000)
     }
     function error() {
       console.log('error')
@@ -45,7 +41,6 @@ export default function Main() {
             }
           }
         }
-        console.log(beachCitiesData)
         setData({beachCitiesData: beachCitiesData, skiCitiesData: skiCitiesData})
       })
   }
